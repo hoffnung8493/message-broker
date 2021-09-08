@@ -1,6 +1,6 @@
 # message-broker
 
-# SUBSCRIBER Initialization
+## SUBSCRIBER Initialization
 -(done) check if corresponding 'DomainTopicQueue' exists
 -(done) if the file does not exist, retrieve all events from 'EventLog'
 -(done) store the events in 'DomainTopicQueue' and for all events run 'executeEventHandler'
@@ -9,7 +9,7 @@
 
 
 
-# PUBLISHER
+## PUBLISHER
 -(done) creates 'eventId'
 -(done) persists event in 'EventLog'
 -(done) if corresponding 'EventLog' file doesnt exist, it creates the file.
@@ -17,7 +17,7 @@
 -(done) emit(`event-${topic}`, content, eventId)
 
 
-# SUBSCRIBER
+## SUBSCRIBER
 - (done) emit.on(`event-${topic}, (content, eventId) => executeEventHandler(eventId, content))
 - (done) 'eventHandler' is the function provided by the developer that processes the event
 - (done) 'executeEventHandler' is a wrapper to 'eventHandler'.
@@ -31,11 +31,8 @@
     - store the error in 'ErrorLog' and retry again. This is very useful for debugging
     - (done) Like the first retry, every retry get another 5 seconds
     - After 5 times of retry, send the event to 'DeadLetterQueue'
-*/
 
-/*
-
-# TODO
+## TODO
 - for the event 'content' replace 'any' type with a generic type.
 - need to lock files when writing to it, in order to prevent overwriting
 - After bugs are fixed, the events in 'DeadLetterQueue' must be to republished. But only to the subscribers that caused errors. NOT ALL SUBSCRIBERS
@@ -46,7 +43,7 @@
 
 -(done) currently after event is acknowledged(processed), the number of tries is lost(processingEvents pop). This data could be usefull for performance analysis
 
-# IDEAS
+## IDEAS
 - GUI. A dashboard where it shows:
   - all the events, 
   - how one type of event triggers other events, causing event chain
